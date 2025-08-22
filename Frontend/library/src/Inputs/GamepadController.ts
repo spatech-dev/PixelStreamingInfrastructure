@@ -194,6 +194,7 @@ export class GamepadController implements IInputController {
                         toStreamerHandlers.get('GamepadAnalog')([controllerId, 6, 0]);
                     } else {
                         toStreamerHandlers.get('GamepadButtonReleased')([controllerId, i, 0]);
+			console.log('gamepadd:', controllerId, i)
                     }
                 }
             }
