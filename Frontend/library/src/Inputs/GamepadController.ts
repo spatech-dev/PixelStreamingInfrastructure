@@ -3,6 +3,7 @@
 import { StreamMessageController } from '../UeInstanceMessage/StreamMessageController';
 import { IInputController } from './IInputController';
 import { Controller, deepCopyGamepad } from './GamepadTypes';
+import { InputHandler} from '../../../spa/InputHandler'
 
 /**
  * Additional types for Window and Navigator
@@ -51,6 +52,7 @@ export enum GamepadLayout {
  * Handles gamepad events from the document to send to the streamer.
  */
 export class GamepadController implements IInputController {
+    inputHandler: InputHandler
     controllers: Array<Controller>;
     streamMessageController: StreamMessageController;
 
@@ -194,7 +196,7 @@ export class GamepadController implements IInputController {
                         toStreamerHandlers.get('GamepadAnalog')([controllerId, 6, 0]);
                     } else {
                         toStreamerHandlers.get('GamepadButtonReleased')([controllerId, i, 0]);
-			console.log('gamepadd:', controllerId, i)
+			this.inputHandler.onGamepadButton(i)
                     }
                 }
             }
